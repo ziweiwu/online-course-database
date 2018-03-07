@@ -1,7 +1,16 @@
 doctype html
 html
   head
+    meta(charset='utf-8')
+    meta(http-equiv='x-ua-compatible', content='ie=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
     title= title
+    link(rel='stylesheet', href='/stylesheets/vendor/bootstrap.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
+    include includes/header
     block content
+    include includes/footer
+  script(src='/js/lib/jquery.js')
+  script(src='/js/lib/bootstrap.js')
+  script(src='/js/main.js')
