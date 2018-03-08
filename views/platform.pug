@@ -4,11 +4,23 @@ block content
   .row
     .col-md-2
     .col-md-8
-      h1= title
+      h3= title
+      form(action='/add_plat', method='POST')
+        .form-group
+          input.form-control.title-area(type='text', name='add_plat' placeholder='Platform Name')
+        .form-group
+          button.btn.btn-sm.btn-primary.btn-block Add Platform
   .row
     .col-md-2
     .col-md-8
-      ul
-        for platform in platforms
-          li #{platform.platform_id}:  #{platform.platform_name}
+      table.table
+        thead
+          tr
+            th Platform ID
+            th Platform Name
+        tbody
+          for platform in platforms
+            tr
+              td #{platform.platform_id}
+              td #{platform.platform_name}
 

@@ -4,11 +4,23 @@ block content
   .row
     .col-md-2
     .col-md-8
-      h1= title
+      h3= title
+      form(action='/add_sub', method='POST')
+        .form-group
+          input.form-control.title-area(type='text', name='add_sub' placeholder='Subject Name')
+        .form-group
+          button.btn.btn-sm.btn-primary.btn-block Add Subject
   .row
     .col-md-2
     .col-md-8
-      ul
-        for subject in subjects
-          li #{subject.subject_id}: #{subject.subject_name}
+      table.table
+        thead
+          tr
+            th Subject ID
+            th Subject Name
+        tbody
+          for subject in subjects
+            tr
+              td #{subject.subject_id}
+              td #{subject.subject_name}
 

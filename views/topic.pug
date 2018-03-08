@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  .row
+    .col-md-2
+    .col-md-8
+      h3= title
+      form(action='/add_topic', method='POST')
+        .form-group
+          input.form-control.title-area(type='text', name='add_topic' placeholder='Topic Name')
+        .form-group
+          button.btn.btn-sm.btn-primary.btn-block Add Topic
+  .row
+    .col-md-2
+    .col-md-8
+      table.table
+        thead
+          tr
+            th Topic ID
+            th Topic Name
+        tbody
+          for topic in topics
+            tr
+              td #{topic.topic_id}
+              td #{topic.topic_name}
+

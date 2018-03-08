@@ -14,6 +14,7 @@ var course = require('./routes/course');
 var org = require('./routes/org');
 var platform = require('./routes/platform');
 var subject = require('./routes/subject');
+var topic = require('./routes/topic');
 //load process.env variables
 dotenv.load();
 
@@ -48,7 +49,7 @@ con.connect(function(err) {
     // drop tables if they are made to clean the database
     var disable_foreign_key_check = 'SET FOREIGN_KEY_CHECKS = 0;';
     var enable_foreign_key_check = 'SET FOREIGN_KEY_CHECKS = 1;';
-    var drop_tables = 'DROP TABLE if exists course, subject, platform, organization;';
+    var drop_tables = 'DROP TABLE if exists link_course_topic, topic, course, subject, platform, organization;';
     con.query(disable_foreign_key_check, function(err, result) {
       if (err) {
         console.log(err);
@@ -107,6 +108,19 @@ con.connect(function(err) {
       }
     });
 
+    // createt topic table
+    var create_topic_table = 'CREATE TABLE if not exists topic('
+        +'topic_id INT PRIMARY KEY AUTO_INCREMENT,'
+        +'topic_name VARCHAR(255) NOT NULL);';
+    console.log(create_topic_table);
+    con.query(create_topic_table, function(err, result) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log("topic table created");
+      }
+    });
+
     // create course tables
     var create_course_table = 'CREATE TABLE if not exists course('
         +'course_id INT PRIMARY KEY AUTO_INCREMENT,'
@@ -121,10 +135,23 @@ con.connect(function(err) {
       if (err) {
         console.log(err);
       } else {
-        console.log("course table created");
+        console.log("link_course_topic table created");
       }
     });
 
+    var create_link_course_topic = 'CREATE TABLE if not exists link_course_topic('
+        +'course_id INT,'
+        +'topic_id INT,'
+        +'FOREIGN KEY(course_id) REFERENCES course(course_id),'
+        +'FOREIGN KEY(topic_id) REFERENCES topic(topic_id));';
+
+    con.query(create_link_course_topic, function(err, result) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log("link course table created");
+      }
+    });
     // Insert data
     // org
     var add_org = 'insert into organization(org_name)'
@@ -168,6 +195,21 @@ con.connect(function(err) {
       }
     });
 
+    var add_top = 'insert into topic(topic_name)'
+        +' values("Programming"),'
+        + '("C++"),'
+        + '("Cellular Process"),'
+        + '("DNA"),'
+        + '("Analysis"),'
+        + '("Algebra"),'
+        + '("Theoretical Physics");';
+    con.query(add_top, function(err, result) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log("added topics");
+      }
+    });
     // courses
     var add_course = 'insert into course(course_name, subject_id,  org_id, platform_id)'
         +' values("Programming in C++", 1, 1, 1),'
@@ -183,6 +225,21 @@ con.connect(function(err) {
       }
     });
 
+    var add_course_topics = 'insert into link_course_topic(course_id, topic_id)'
+        +' values (1, 1),'
+        +' (1, 2),'
+        +' (2, 3),'
+        +' (2, 4),'
+        +' (4, 5),'
+        +' (4, 6),'
+        +' (3, 7);';
+    con.query(add_course_topics, function(err, result) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log("added course topic links");
+      }
+    });
 //end of connection function
   }
 });
@@ -220,6 +277,7 @@ app.use('/', course);
 app.use('/', org);
 app.use('/', platform);
 app.use('/', subject);
+app.use('/', topic);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

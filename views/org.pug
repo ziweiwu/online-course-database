@@ -4,12 +4,23 @@ block content
   .row
     .col-md-2
     .col-md-8
-      h1= title
+      h3= title
+      form(action='/add_org', method='POST')
+        .form-group
+          input.form-control.title-area(type='text', name='add_org' placeholder='Organization Name')
+        .form-group
+          button.btn.btn-sm.btn-primary.btn-block Add Organization
   .row
     .col-md-2
     .col-md-8
-      ul
-        for org in orgs
-          li #{org.org_id}: #{org.org_name}
-
+      table.table
+        thead
+          tr
+            th Organization ID
+            th Organization Name
+        tbody
+          for org in orgs
+            tr
+              td #{org.org_id}
+              td #{org.org_name}
 
