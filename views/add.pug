@@ -7,53 +7,30 @@ block content
       h1= title
   .row
     .col-md-2
-    .col-md-4
-      form(action='/', method='POST')
+    .col-md-6
+      form(action='/add', method='POST')
         .form-group
-          input.form-control.title-area(type='text', name='courseName', placeholder='Course Name')
+          input.form-control.title-area(type='text', name='course' placeholder='Course Name')
         .form-group
-          input.form-control.title-area(type='text', name='subject', placeholder='Subject')
+          input.form-control.title-area(type='text', name='subject', id='sub_input', placeholder='Subject')
+          select.form-control(id = 'sub_drop')
+            option(value = '')
+            for subject in subjects
+              option(value = subject)
+                p #{subject}
         .form-group
-          input.form-control.title-area(type='text', name='platform', placeholder='Platform')
+          input.form-control.title-area(type='text', name='platform',id='plat_input', placeholder='Platform')
+          select.form-control(id = 'plat_drop')
+            option(value = '')
+            for platform in platforms
+              option(value = platform)
+                p #{platform}
         .form-group
-          input.form-control.title-area(type='text', name='organization', placeholder='Organization')
+          input.form-control.title-area(type='text', name='organization', id='org_input', placeholder='Organization')
+          select.form-control(id = 'org_drop')
+            option(value = '')
+            for org in orgs
+              option(value = org)
+                p #{org}
         .form-group
           button.btn.btn-sm.btn-primary.btn-block Add Course
-    .col-md-4
-      p Select choices
-      .dropdown
-        button.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown')
-          | Choose Subject
-          span.caret
-        ul.dropdown-menu(role='menu', aria-labelledby='menu1')
-          for each
-          li(role='presentation')
-            a(role='menuitem', tabindex='-1', href='#') HTML
-          li(role='presentation')
-            a(role='menuitem', tabindex='-1', href='#') CSS
-          li(role='presentation')
-            a(role='menuitem', tabindex='-1', href='#') JavaScript
-      .dropdown
-        button.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown')
-          | Choose Platform
-          span.caret
-        ul.dropdown-menu(role='menu', aria-labelledby='menu1')
-          li(role='presentation')
-            a(role='menuitem', tabindex='-1', href='#') HTML
-          li(role='presentation')
-            a(role='menuitem', tabindex='-1', href='#') CSS
-          li(role='presentation')
-            a(role='menuitem', tabindex='-1', href='#') JavaScript
-      .dropdown
-        button.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown')
-          | Choose Organization
-          span.caret
-        ul.dropdown-menu(role='menu', aria-labelledby='menu1')
-          li(role='presentation')
-            a(role='menuitem', tabindex='-1', href='#') HTML
-          li(role='presentation')
-            a(role='menuitem', tabindex='-1', href='#') CSS
-          li(role='presentation')
-            a(role='menuitem', tabindex='-1', href='#') JavaScript
-
-

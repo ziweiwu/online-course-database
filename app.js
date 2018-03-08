@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var dotenv = require('dotenv');
 var mysql = require('mysql');
+var parseDBURL = require('parse-database-url');
 
 var index = require('./routes/index');
 var add = require('./routes/add');
@@ -19,11 +20,23 @@ dotenv.load();
 var app = express();
 
 //set up database
+// if deploy use clearDB database, else use local mySQL
+var DB_config, DB_URL;
+if(process.env.CLEARDB_DATABASE_URL){
+  DB_URL = process.env.CLEARDB_DATABASE_URL;
+  DB_config = parseDBURL(DB_URL) ;
+}
+
+// connect to mysql
+var host = 'localhost'|| DB_config.host;
+var user =  'root' || DB_config.user ;
+var password = process.env.mysqlPASS || DB_config.password;
+var database = 'online-course-app' ||DB_config.database ;
 var con = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: process.env.mysqlPASS,
-  database: 'online-course-app'
+  host:  host,
+  user: user,
+  password:  password,
+  database:  database
 });
 
 con.connect(function(err) {
