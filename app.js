@@ -33,6 +33,8 @@ var user =  DB_config.user || 'root';
 var password = DB_config.password || localDBPass;
 var database = DB_config.database || 'online-course-app';
 var con = mysql.createConnection({
+  reconnect: 'true',
+  driver: 'mysql',
   host:  host,
   user: user,
   password:  password,
