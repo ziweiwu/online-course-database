@@ -36,8 +36,7 @@ var con = mysql.createConnection({
   host:  host,
   user: user,
   password:  password,
-  database:  database,
-  port:  3306
+  database:  database
 });
 
 con.connect(function(err) {
