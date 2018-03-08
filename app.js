@@ -25,8 +25,6 @@ var DB_URL = process.env.CLEARDB_DATABASE_URL || ' ';
 var DB_config = parseDBURL(DB_URL) ;
 console.log(DB_config);
 var localDBPass = process.env.mysqlPASS || 'password';
-var newDb = 'mysql://b34d5c0f3210b6:be16221e@us-cdbr-iron-east-05.cleardb.net/heroku_3c959113d2d0dc2?reconnect=true';
-console.log(parseDBURL(newDb));
 // connect to mysql
 var host =  DB_config.host || 'localhost';
 var user =  DB_config.user || 'root';
