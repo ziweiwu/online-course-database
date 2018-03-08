@@ -1,0 +1,28 @@
+extends layout
+
+block content
+  .row
+    .col-md-2
+    .col-md-8
+      h1= title
+  .row
+    .col-md-2
+    .col-md-8
+      table.table
+        thead
+          tr
+            th Course Id
+            th Course Name
+            th Organization
+            th Platform
+            th Subject
+        tbody
+          for course in courses
+            tr
+              td #{course.course_id}
+              td #{course.course_name}
+              td #{course.org_name}
+              td #{course.platform_name}
+              td #{course.subject_name}
+
+

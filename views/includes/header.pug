@@ -1,20 +1,23 @@
-.row
-  .col-md-2
-  .col-md-8
-    nav.navbar.navbar-default.navbar-static-top#header
-      .container
-        .navbar-header
-          button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#navbar')
-            span.sr-only Toggle navigation
-            span.icon-bar
-            span.icon-bar
-            span.icon-bar
-          a.navbar-brand(href='/') Online Course Database
-        #navbar.navbar-collapse.collapse
-          ul.nav.navbar-nav.navbar-left
-            li(class=(title == 'Search Courses') ? 'active' : null)
-              a(href='/') Search Courses
-            li(class=(title == 'Add Courses') ? 'active' : null)
-              a(href='/add') Add Courses
-            li(class=(title == 'View Courses') ? 'active' : null)
-              a(href='/show') View Courses
+nav.navbar.navbar-default.navbar-static-top#header
+  .container
+    .navbar-header
+      button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#navbar')
+        span.sr-only Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      a.navbar-brand(href='/') Online Course Database
+    #navbar.navbar-collapse.collapse
+      ul.nav.navbar-nav.navbar-left
+        li(class=(title == 'Search Courses') ? 'active' : null)
+          a(href='/') Search Courses
+        li(class=(title == 'Add Courses') ? 'active' : null)
+          a(href='/add') Add Courses
+        li(class=(title == 'View Courses') ? 'active' : null)
+          a(href='/course') View Courses
+        li(class=(title == 'View Organizations') ? 'active' : null)
+          a(href='/org') View Organizations
+        li(class=(title == 'View Platforms') ? 'active' : null)
+          a(href='/platform') View Platforms
+        li(class=(title == 'View Subjects') ? 'active' : null)
+          a(href='/subject') View Subjects
