@@ -23,6 +23,7 @@ var app = express();
 // if deploy use clearDB database, else use local mySQL
 var DB_URL = process.env.CLEARDB_DATABASE_URL || ' ';
 var DB_config = parseDBURL(DB_URL) ;
+console.log(DB_config);
 
 // connect to mysql
 var host = 'localhost'|| DB_config.host;
