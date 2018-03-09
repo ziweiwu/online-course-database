@@ -154,11 +154,11 @@ router.post('/update', function(req, res, next) {
       //get form data for course
       var selectedCourse = req.body.selected_course;
       var courseName = req.body.courseName;
-      var subject = req.body.subject;
-      var platform  = req.body.platform;
-      var organization = req.body.organization;
-      var topic1 = req.body.topic1;
-      var topic2 = req.body.topic2;
+      var subject = req.body.subject || null;
+      var platform  = req.body.platform || null;
+      var organization = req.body.organization || null;
+      var topic1 = req.body.topic1 || null;
+      var topic2 = req.body.topic2 || null;
       var update_course = 'update course set course_name = "' + courseName
       + '", subject_id =(select subject_id from subject where subject_name="' + subject
       + '"), org_id=(select org_id from organization where org_name ="' + organization

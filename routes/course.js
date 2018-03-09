@@ -29,9 +29,9 @@ router.get('/course', function(req, res, next) {
       console.log('mysql Connected!');
       var courses = 'select course_id, course_name, org_name, platform_name, subject_name, '
           + 't1.topic_name as topic1_name, t2.topic_name as topic2_name from course '
-          + 'join platform on course.platform_id = platform.platform_id '
-          + 'join organization on course.org_id = organization.org_id '
-          + 'join subject on course.subject_id = subject.subject_id '
+          + 'left join platform on course.platform_id = platform.platform_id '
+          + 'left join organization on course.org_id = organization.org_id '
+          + 'left join subject on course.subject_id = subject.subject_id '
           + 'left join topic as t1 on course.topic1_id = t1.topic_id '
           + 'left join topic as t2 on course.topic2_id = t2.topic_id '
           + 'order by course_id asc;';

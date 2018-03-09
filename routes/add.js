@@ -153,11 +153,11 @@ router.get('/add', function(req, res) {
         console.log('mysql Connected!');
         //get form data for course
         var courseName = req.body.course;
-        var subject = req.body.subject;
-        var platform = req.body.platform;
-        var organization = req.body.organization;
-        var topic1 = req.body.topic1;
-        var topic2 = req.body.topic2;
+        var subject = req.body.subject || null;
+        var platform = req.body.platform || null;
+        var organization = req.body.organization || null;
+        var topic1 = req.body.topic1 || null;
+        var topic2 = req.body.topic2 || null;
         var add_course = 'insert into course (course_name, subject_id, '
             + 'platform_id, org_id, topic1_id, topic2_id) values '
             + '("' + courseName + '",'
