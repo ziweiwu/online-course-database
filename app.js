@@ -4,7 +4,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var dotenv = require('dotenv');
-var mysql = require('mysql');
+var mysql = require('mysql2');
 var parseDBURL = require('parse-database-url');
 
 var index = require('./routes/index');
