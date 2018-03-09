@@ -1,6 +1,5 @@
 var express = require('express');
 var path = require('path');
-var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
@@ -228,20 +227,6 @@ con.connect(function(err) {
 });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -285,7 +270,7 @@ app.use(function(req, res, next) {
 /****************************************************
  Port listener
  ****************************************************/
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 5000;
 app.listen(port, function(){
   console.log("server running at port " + port);
 })
