@@ -15,6 +15,7 @@ var org = require('./routes/org');
 var platform = require('./routes/platform');
 var subject = require('./routes/subject');
 var topic = require('./routes/topic');
+var update = require('./routes/update');
 //load process.env variables
 dotenv.load();
 
@@ -260,6 +261,7 @@ app.use('/', org);
 app.use('/', platform);
 app.use('/', subject);
 app.use('/', topic);
+app.use('/', update);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

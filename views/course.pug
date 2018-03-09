@@ -5,6 +5,15 @@ block content
     .col-md-2
     .col-md-8
       h3= title
+      form(action='/delete', method='POST')
+        .form-group
+          select.form-control(id = 'del_course' name = 'delCourse')
+            option(value = '' disabled selected) Choose Course to Delete
+            for course in courses
+              option(value = course.course_name)
+                p #{course.course_name}
+        .form-group
+          button.btn.btn-sm.btn-primary.btn-block Delete Course
   .row
     .col-md-2
     .col-md-8
