@@ -27,7 +27,6 @@ router.get('/course', function(req, res, next) {
       console.log(err);
     } else {
       console.log('mysql Connected!');
-
       var courses = 'select course_id, course_name, org_name, platform_name, subject_name, '
           + 't1.topic_name as topic1_name, t2.topic_name as topic2_name from course '
           + 'join platform on course.platform_id = platform.platform_id '
