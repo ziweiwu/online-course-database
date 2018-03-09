@@ -21,6 +21,7 @@ org_drop.addEventListener('change', function(){
   org_input.value = org_drop.value;
 });
 
-
-
+var topic1 = document.getElementById('topic1');
+var topic2 = document.getElementById('topic2');
+var topic3 = document.getElementById('topic3');
 

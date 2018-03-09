@@ -12,25 +12,22 @@ block content
         .form-group
          input.form-control.title-area(type='text', name='course' placeholder='Course Name')
         .form-group
-          //input.form-control.title-area(type='text', name='subject', id='sub_input', placeholder='Subject')
           select.form-control(id = 'sub_drop' name = 'subject')
             option(value = '' disabled selected) Choose Subject
             for subject in subjects
               option(value = subject)
                 p #{subject}
         .form-group
-          //input.form-control.title-area(type='text', name='platform',id='plat_input', placeholder='Platform')
           select.form-control(id = 'plat_drop' name = 'platform')
             option(value = '' disabled selected) Choose Platform
             for platform in platforms
               option(value = platform)
                 p #{platform}
         .form-group
-          //input.form-control.title-area(type='text', name='organization', id='org_input', placeholder='Organization')
-          select.form-control(id = 'org_drop' name = 'organization')
-            option(value = '' disabled selected) Choose Organization
-            for org in orgs
-              option(value = org)
-                p #{org}
+          select.form-control(id = 'topic_drop1' name = 'topic1')
+            option(value = '' disabled selected) Choose topic 1
+            for topic in topics
+              option(value = topics)
+                p #{topic}
         .form-group
           button.btn.btn-sm.btn-primary.btn-block Add Course
