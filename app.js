@@ -49,7 +49,7 @@ con.connect(function(err) {
     // drop tables if they are made to clean the database
     var disable_foreign_key_check = 'SET FOREIGN_KEY_CHECKS = 0;';
     var enable_foreign_key_check = 'SET FOREIGN_KEY_CHECKS = 1;';
-    var drop_tables = 'DROP TABLE if exists link_course_topic, topic, course, subject, platform, organization;';
+    var drop_tables = 'DROP TABLE if exists link_course_topic, course, topic, subject, platform, organization;';
     con.query(disable_foreign_key_check, function(err, result) {
       if (err) {
         console.log(err);
