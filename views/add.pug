@@ -24,10 +24,24 @@ block content
               option(value = platform)
                 p #{platform}
         .form-group
-          select.form-control(id = 'topic_drop1' name = 'topic1')
-            option(value = '' disabled selected) Choose topic 1
+          select.form-control(id = 'org_drop' name = 'organization')
+            option(value = '' disabled selected) Choose Organization
+            for org in orgs
+              option(value = org)
+                p #{org}
+        .form-group
+          select.form-control(id = 'topic1_drop' name = 'topic1')
+            option(value = '' disabled selected, id = 'topic1_op') Choose topic 1
             for topic in topics
-              option(value = topics)
+              option(value = topic)
                 p #{topic}
         .form-group
+          select.form-control(id = 'topic2_drop' name = 'topic2')
+            option(value = '' disabled selected, id = 'topic2_op') Choose topic 2
+            for topic in topics
+              option(value = topic)
+                p #{topic}
+        p#warning
+        .form-group
           button.btn.btn-sm.btn-primary.btn-block Add Course
+

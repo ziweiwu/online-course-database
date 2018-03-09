@@ -49,7 +49,7 @@ con.connect(function(err) {
     // drop tables if they are made to clean the database
     var disable_foreign_key_check = 'SET FOREIGN_KEY_CHECKS = 0;';
     var enable_foreign_key_check = 'SET FOREIGN_KEY_CHECKS = 1;';
-    var drop_tables = 'DROP TABLE if exists link_course_topic, course, topic, subject, platform, organization;';
+    var drop_tables = 'DROP TABLE if exists course, topic, subject, platform, organization;';
     con.query(disable_foreign_key_check, function(err, result) {
       if (err) {
         console.log(err);
@@ -128,9 +128,14 @@ con.connect(function(err) {
         +'subject_id INT,'
         +'platform_id INT,'
         +'org_id INT,'
+        +'topic1_id INT,'
+        +'topic2_id INT,'
         +'FOREIGN KEY(platform_id) REFERENCES platform(platform_id),'
         +'FOREIGN KEY(subject_id) REFERENCES subject(subject_id),'
-        +'FOREIGN KEY(org_id) REFERENCES organization(org_id))';
+        +'FOREIGN KEY(org_id) REFERENCES organization(org_id),'
+        +'FOREIGN KEY(topic1_id) REFERENCES topic(topic_id),'
+        +'FOREIGN KEY(topic2_id) REFERENCES topic(topic_id));';
+
     con.query(create_course_table, function(err, result) {
       if (err) {
         console.log(err);
@@ -139,19 +144,6 @@ con.connect(function(err) {
       }
     });
 
-    var create_link_course_topic = 'CREATE TABLE if not exists link_course_topic('
-        +'course_id INT,'
-        +'topic_id INT,'
-        +'FOREIGN KEY(course_id) REFERENCES course(course_id),'
-        +'FOREIGN KEY(topic_id) REFERENCES topic(topic_id));';
-
-    con.query(create_link_course_topic, function(err, result) {
-      if (err) {
-        console.log(err);
-      } else {
-        console.log("link course table created");
-      }
-    });
     // Insert data
     // org
     var add_org = 'insert into organization(org_name)'
@@ -211,12 +203,12 @@ con.connect(function(err) {
       }
     });
     // courses
-    var add_course = 'insert into course(course_name, subject_id,  org_id, platform_id)'
-        +' values("Programming in C++", 1, 1, 1),'
-        + '("Cell Biology", 2, 2, 2),'
-        + '("Quantum Mechanics", 4, 4, 3),'
-        + '("Real Analysis", 3, 3, 4),'
-        + '("Data Structure", 1, 3, 1);';
+    var add_course = 'insert into course(course_name, subject_id,  org_id, platform_id, topic1_id, topic2_id)'
+        +' values("Programming in C++", 1, 1, 1, 1, 2),'
+        + '("Cell Biology", 2, 2, 2, 3, 4),'
+        + '("Quantum Mechanics", 4, 4, 1, 7, null),'
+        + '("Real Analysis", 3, 2, 3, 5, null),'
+        + '("Data Structure", 1, 3, 2, 2, null);';
     con.query(add_course, function(err, result) {
       if (err) {
         console.log(err);
@@ -225,22 +217,12 @@ con.connect(function(err) {
       }
     });
 
-    var add_course_topics = 'insert into link_course_topic(course_id, topic_id)'
-        +' values (1, 1),'
-        +' (1, 2),'
-        +' (2, 3),'
-        +' (2, 4),'
-        +' (4, 5),'
-        +' (4, 6),'
-        +' (3, 7);';
-    con.query(add_course_topics, function(err, result) {
-      if (err) {
-        console.log(err);
-      } else {
-        console.log("added course topic links");
-      }
-    });
-//end of connection function
+
+
+
+
+
+    //end of connection function
   }
 });
 
