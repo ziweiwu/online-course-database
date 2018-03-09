@@ -48,7 +48,7 @@ con.connect(function(err) {
 
     // drop tables if they are made to clean the database
     var disable_foreign_key_check = 'SET FOREIGN_KEY_CHECKS = 0;';
-//    var enable_foreign_key_check = 'SET FOREIGN_KEY_CHECKS = 1;';
+    var enable_foreign_key_check = 'SET FOREIGN_KEY_CHECKS = 1;';
     var drop_tables = 'DROP TABLE if exists course, topic, subject, platform, organization;';
     con.query(disable_foreign_key_check, function(err, result) {
       if (err) {
@@ -64,13 +64,13 @@ con.connect(function(err) {
         console.log("Tables dropped");
       }
     });
-    // con.query(enable_foreign_key_check, function(err, result) {
-    //   if (err) {
-    //     console.log(err);
-    //   } else {
-    //     console.log("set foreign key on");
-    //   }
-    // });
+    con.query(enable_foreign_key_check, function(err, result) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log("set foreign key on");
+      }
+    });
 
     // create organization tables
     var create_org_table = 'CREATE TABLE if not exists organization('
@@ -250,16 +250,16 @@ app.use(function(req, res, next) {
   next(err);
 });
 
-// error handler
-// app.use(function(err, req, res, next) {
-//   // set locals, only providing error in development
-//   res.locals.message = err.message;
-//   res.locals.error = req.app.get('env') === 'development' ? err : {};
-//
-//   // render the error page
-//   res.status(err.status || 500);
-//   res.render('error');
-// });
+//error handler
+app.use(function(err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error');
+});
 
 
 /****************************************************
@@ -268,6 +268,6 @@ app.use(function(req, res, next) {
 var port = process.env.PORT || 5000;
 app.listen(port, function(){
   console.log("server running at port " + port);
-})
+});
 
 module.exports = app;

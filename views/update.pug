@@ -10,7 +10,14 @@ block content
     .col-md-6
       form(action='/update', method='POST')
         .form-group
-          input.form-control.title-area(type='text', name='course' placeholder='Course Name')
+          select.form-control(id = 'course_drop' name = 'selected_course')
+            option(value = '' disabled selected) Choose a Course To Update
+            for course in courses
+              option(value = course)
+                p #{course}
+
+        .form-group
+          input.form-control.title-area(type='text', id='course_input', name='courseName' placeholder='Enter New Course Name')
         .form-group
           select.form-control(id = 'sub_drop' name = 'subject')
             option(value = '' disabled selected) Choose Subject
@@ -43,4 +50,4 @@ block content
                 p #{topic}
         p#warning
         .form-group
-          button.btn.btn-sm.btn-primary.btn-block Add Course
+          button.btn.btn-sm.btn-primary.btn-block Update Course

@@ -1,6 +1,4 @@
-/*
-add course page
- */
+//for add page
 var topic1 = document.getElementById('topic1_drop');
 var topic2 = document.getElementById('topic2_drop');
 var warning = document.getElementById('warning');
@@ -21,3 +19,19 @@ topic2.addEventListener('change', function() {
     warning.textContent='';
   }
 });
+
+
+//for update page
+var selectedCourse = document.getElementById('course_drop');
+var course_name = document.getElementById('course_input');
+var course_sub = document.getElementById('sub_drop');
+var course_plat = document.getElementById('plat_drop');
+var course_org = document.getElementById('org_drop');
+
+//if selected course is changed, set course name input to the selected
+selectedCourse.addEventListener('change', function(){
+  course_name.value = selectedCourse.value;
+});
+
+
+
