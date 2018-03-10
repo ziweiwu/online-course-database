@@ -27,10 +27,10 @@ var DB_config = parseDBURL(DB_URL) ;
 console.log(DB_config);
 var localDBPass = process.env.mysqlPASS || 'password';
 // connect to mysql
-var host =  DB_config.host || 'localhost';
-var user =  DB_config.user || 'root';
-var password = DB_config.password || localDBPass;
-var database = DB_config.database || 'online-course-app';
+var host =  'localhost'|| DB_config.host;
+var user =  'root' || DB_config.user;
+var password = localDBPass || DB_config.password;
+var database = 'online_course_app' || 'online-course-app'|| DB_config.database;
 var con = mysql.createConnection({
   reconnect: 'true',
   driver: 'mysql',
