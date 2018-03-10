@@ -7,10 +7,56 @@ block content
       h3= title
   .row
     .col-md-2
-    .col-md-8
-      form(action='/', method='POST')
+    .col-md-6
+      form(action='/by_any', method='post')
         .form-group
-          input.form-control.title-area(type='text', name='courseName', placeholder='Course Name')
+          input.form-control.title-area(type='text', name='any' placeholder='any term')
         .form-group
-          button.btn.btn-sm.btn-primary.btn-block Search Course
+          button.btn.btn-sm.btn-primary.btn-block Search Courses By Any Term
 
+      form(action='/by_name', method='post')
+        .form-group
+          input.form-control.title-area(type='text', name='course' placeholder='Course Name')
+        .form-group
+          button.btn.btn-sm.btn-primary.btn-block Search Courses By Course Name
+
+      form(action='/by_org', method='post')
+        .form-group
+          select.form-control(id = 'org_drop' name = 'organization')
+            option(value = '' selected) Choose Organization
+            for org in orgs
+              option(value = org)
+                p #{org}
+        .form-group
+          button.btn.btn-sm.btn-primary.btn-block Search Courses By Organization
+
+      form(action='/by_platform', method='post')
+        .form-group
+          select.form-control(id = 'plat_drop' name = 'platform')
+            option(value = '' selected) Choose Platform
+            for platform in platforms
+              option(value = platform)
+                p #{platform}
+        .form-group
+          button.btn.btn-sm.btn-primary.btn-block Search Courses By Platform
+
+      form(action='/by_subject', method='post')
+        .form-group
+          select.form-control(id = 'sub_drop' name = 'subject')
+            option(value = '' selected) Choose Subject
+            for subject in subjects
+              option(value = subject)
+                p #{subject}
+
+        .form-group
+          button.btn.btn-sm.btn-primary.btn-block Search Courses By Subject
+
+      form(action='/by_topic', method='post')
+        .form-group
+          select.form-control(id = 'topic_drop' name = 'topic')
+            option(value = '' selected, id = 'topic') Choose Topic
+            for topic in topics
+              option(value = topic)
+                p #{topic}
+        .form-group
+          button.btn.btn-sm.btn-primary.btn-block Search Courses By Topic

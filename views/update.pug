@@ -11,7 +11,7 @@ block content
       form(action='/update', method='POST')
         .form-group
           select.form-control(id = 'course_drop' name = 'selected_course')
-            option(value = '' disabled selected) Choose a Course To Update
+            option(value = '' selected) Choose a Course To Update
             for course in courses
               option(value = course)
                 p #{course}
@@ -20,31 +20,31 @@ block content
           input.form-control.title-area(type='text', id='course_input', name='courseName' placeholder='Enter New Course Name')
         .form-group
           select.form-control(id = 'sub_drop' name = 'subject')
-            option(value = '' disabled selected) Choose Subject
+            option(value = '' selected) Choose Subject
             for subject in subjects
               option(value = subject)
                 p #{subject}
         .form-group
           select.form-control(id = 'plat_drop' name = 'platform')
-            option(value = '' disabled selected) Choose Platform
+            option(value = '' selected) Choose Platform
             for platform in platforms
               option(value = platform)
                 p #{platform}
         .form-group
           select.form-control(id = 'org_drop' name = 'organization')
-            option(value = '' disabled selected) Choose Organization
+            option(value = '' selected) Choose Organization
             for org in orgs
               option(value = org)
                 p #{org}
         .form-group
           select.form-control(id = 'topic1_drop' name = 'topic1')
-            option(value = '' disabled selected, id = 'topic1_op') Choose topic 1
+            option(value = '' selected, id = 'topic1_op') Choose topic 1
             for topic in topics
               option(value = topic)
                 p #{topic}
         .form-group
           select.form-control(id = 'topic2_drop' name = 'topic2')
-            option(value = '' disabled selected, id = 'topic2_op') Choose topic 2
+            option(value = '' selected, id = 'topic2_op') Choose topic 2
             for topic in topics
               option(value = topic)
                 p #{topic}

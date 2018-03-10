@@ -143,7 +143,7 @@ router.get('/add', function(req, res) {
       host: host,
       user: user,
       password: password,
-      database: database,
+      database: database
     });
 
     con.connect(function(err) {
