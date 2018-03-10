@@ -34,7 +34,7 @@ router.get('/topic', function(req, res, next) {
           console.log(err);
         } else {
           console.log(result);
-          res.render('topic', {topics: result, title: 'View topics'});
+          res.render('topic', {topics: result, title: 'View Topics'});
         }
       });
     }

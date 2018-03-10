@@ -41,7 +41,7 @@ router.get('/course', function(req, res, next) {
         } else {
           var courses = result;
           console.log(courses);
-          res.render('course', {courses: courses, title: 'View Courses'});
+          res.render('course', {courses: courses, title: 'View/Delete Courses'});
         }
       });
     }
