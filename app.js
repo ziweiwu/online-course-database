@@ -6,6 +6,7 @@ var bodyParser = require('body-parser');
 var dotenv = require('dotenv');
 var mysql = require('mysql2');
 var parseDBURL = require('parse-database-url');
+var compression = require('compression');
 
 var index = require('./routes/index');
 var add = require('./routes/add');
@@ -15,10 +16,11 @@ var platform = require('./routes/platform');
 var subject = require('./routes/subject');
 var topic = require('./routes/topic');
 var update = require('./routes/update');
-//load process.env variables
 
+//load process.env variables
 dotenv.load();
 var app = express();
+app.use(compression());
 
 //set up database
 // if deploy use clearDB database, else use local mySQL
