@@ -130,7 +130,7 @@ con.connect(function(err) {
       + 'subject_id INT NOT NULL,'
       + 'platform_id INT NOT NULL,'
       + 'org_id INT NOT NULL,'
-      + 'topic1_id INT NOT NULL,'
+      + 'topic1_id INT,'
         +'topic2_id INT,'
         +'FOREIGN KEY(platform_id) REFERENCES platform(platform_id),'
         +'FOREIGN KEY(subject_id) REFERENCES subject(subject_id),'
