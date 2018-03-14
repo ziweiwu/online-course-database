@@ -127,10 +127,10 @@ con.connect(function(err) {
     var create_course_table = 'CREATE TABLE if not exists course('
         +'course_id INT PRIMARY KEY AUTO_INCREMENT,'
         +'course_name VARCHAR(255) NOT NULL,'
-        +'subject_id INT,'
-        +'platform_id INT,'
-        +'org_id INT,'
-        +'topic1_id INT,'
+      + 'subject_id INT NOT NULL,'
+      + 'platform_id INT NOT NULL,'
+      + 'org_id INT NOT NULL,'
+      + 'topic1_id INT NOT NULL,'
         +'topic2_id INT,'
         +'FOREIGN KEY(platform_id) REFERENCES platform(platform_id),'
         +'FOREIGN KEY(subject_id) REFERENCES subject(subject_id),'
@@ -204,20 +204,21 @@ con.connect(function(err) {
         console.log("added topics");
       }
     });
-    // courses
-    var add_course = 'insert into course(course_name, subject_id,  org_id, platform_id, topic1_id, topic2_id)'
-        +' values("Programming in C++", 1, 1, 1, 1, 2),'
-        + '("Cell Biology", 2, 2, 2, 3, 4),'
-        + '("Quantum Mechanics", 4, 4, 1, 7, null),'
-        + '("Real Analysis", 3, 2, 3, 5, null),'
-        + '("Data Structure", 1, 3, 2, 2, null);';
-    con.query(add_course, function(err, result) {
-      if (err) {
-        console.log(err);
-      } else {
-        console.log("added courses");
-      }
-    });
+    
+    // // add some courses values
+    // var add_course = 'insert into course(course_name, subject_id,  org_id, platform_id, topic1_id, topic2_id)'
+    //     +' values("Programming in C++", 1, 1, 1, 1, 2),'
+    //     + '("Cell Biology", 2, 2, 2, 3, 4),'
+    //     + '("Quantum Mechanics", 4, 4, 1, 7, null),'
+    //     + '("Real Analysis", 3, 2, 3, 5, null),'
+    //     + '("Data Structure", 1, 3, 2, 2, null);';
+    // con.query(add_course, function(err, result) {
+    //   if (err) {
+    //     console.log(err);
+    //   } else {
+    //     console.log("added courses");
+    //   }
+    // });
 
     //end of connection function
   }
