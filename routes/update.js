@@ -171,6 +171,7 @@ router.post('/update', function(req, res, next) {
       con.query(update_course, function(err, result) {
         if (err) {
           console.log(err);
+          res.redirect('/update');
         } else {
           console.log(result);
           res.redirect('/course');

@@ -10,34 +10,34 @@ block content
     .col-md-6
       form(action='/add', method='POST')
         .form-group
-         input.form-control.title-area(type='text', name='course' placeholder='Course Name')
+          input.form-control.title-area(type='text', name='course' placeholder='Course Name (Mandatory)')
         .form-group
           select.form-control(id = 'sub_drop' name = 'subject')
-            option(value = '' selected) Choose Subject
+            option(value = '' selected ) Choose Subject (Mandatory)
             for subject in subjects
               option(value = subject)
                 p #{subject}
         .form-group
           select.form-control(id = 'plat_drop' name = 'platform')
-            option(value = '' selected) Choose Platform
+            option(value = '' selected) Choose Platform (Mandatory)
             for platform in platforms
               option(value = platform)
                 p #{platform}
         .form-group
           select.form-control(id = 'org_drop' name = 'organization')
-            option(value = '' selected) Choose Organization
+            option(value = '' selected) Choose Organization (Mandatory)
             for org in orgs
               option(value = org)
                 p #{org}
         .form-group
           select.form-control(id = 'topic1_drop' name = 'topic1')
-            option(value = '' selected, id = 'topic1_op') Choose topic 1
+            option(value = '' selected, id = 'topic1_op') Choose topic 1 (Optional)
             for topic in topics
               option(value = topic)
                 p #{topic}
         .form-group
           select.form-control(id = 'topic2_drop' name = 'topic2')
-            option(value = '' selected, id = 'topic2_op') Choose topic 2
+            option(value = '' selected, id = 'topic2_op') Choose topic 2 (Optional)
             for topic in topics
               option(value = topic)
                 p #{topic}

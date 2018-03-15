@@ -176,6 +176,7 @@ router.get('/add', function(req, res) {
         con.query(add_course, function(err, result) {
           if (err) {
             console.log(err);
+            res.redirect('/add');
           } else {
             console.log(result);
             res.redirect('/course');
