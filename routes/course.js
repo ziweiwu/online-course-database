@@ -72,11 +72,8 @@ router.post('/delete', function(req, res, next) {
       console.log(err);
     } else {
       console.log('mysql Connected!');
-
       console.log(req.body.delCourse);
-
       var del_course = 'delete from course where course_name="'  + req.body.delCourse+ '";';
-      console.log(del_course);
       con.query(del_course, function(err, result) {
         if (err) {
           console.log(err);

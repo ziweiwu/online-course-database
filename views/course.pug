@@ -11,7 +11,7 @@ block content
             option(value = '' disabled selected) Choose Course to Delete
             for course in courses
               option(value = course.course_name)
-                p #{course.course_name}
+                p Id #{course.course_id}: #{course.course_name}
         .form-group
           button.btn.btn-sm.btn-primary.btn-block Delete Course
   .row
