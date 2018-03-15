@@ -158,8 +158,8 @@ router.get('/add', function(req, res) {
         var organization = req.body.organization;
         var topic1 = req.body.topic1 || null;
         var topic2 = req.body.topic2 || null;
-        var add_course = 'insert into course (course_name = ?, subject_id = ?, '
-          + 'platform_id = ?, org_id = ?, topic1_id =?, topic2_id = ?) values '
+        var add_course = 'insert into course (course_name, subject_id, '
+          + 'platform_id, org_id, topic1_id, topic2_id) values '
             + '("' + courseName + '",'
             + '(select subject_id from subject where subject_name="' + subject +
             '"),'
