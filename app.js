@@ -49,30 +49,29 @@ con.connect(function(err) {
     console.log('mysql Connected!');
 
     // drop tables if they are made to clean the database
-    var disable_foreign_key_check = 'SET FOREIGN_KEY_CHECKS = 0;';
-    //var enable_foreign_key_check = 'SET FOREIGN_KEY_CHECKS = 1;';
-    var drop_tables = 'DROP TABLE if exists course, topic, subject, platform, organization;';
-    con.query(disable_foreign_key_check, function(err, result) {
-      if (err) {
-        console.log(err);
-      } else {
-        console.log("Set foreign keys off");
-      }
-    });
-    con.query(drop_tables, function(err, result) {
-      if (err) {
-        console.log(err);
-      } else {
-        console.log("Tables dropped");
-      }
-    });
-    // con.query(enable_foreign_key_check, function(err, result) {
+    // for dev only
+    //  var drop_tables = 'DROP TABLE if exists course, topic, subject, platform, organization;';
+    // con.query(disable_foreign_key_check, function(err, result) {
     //   if (err) {
     //     console.log(err);
     //   } else {
-    //     console.log("set foreign key on");
+    //     console.log("Set foreign keys off");
     //   }
     // });
+    // con.query(drop_tables, function(err, result) {
+    //   if (err) {
+    //     console.log(err);
+    //   } else {
+    //     console.log("Tables dropped");
+    //   }
+    // });
+    //  con.query(enable_foreign_key_check, function(err, result) {
+    //    if (err) {
+    //      console.log(err);
+    //    } else {
+    //      console.log("set foreign key on");
+    //    }
+    //  });
 
     // create organization tables
     var create_org_table = 'CREATE TABLE if not exists organization('
@@ -204,7 +203,7 @@ con.connect(function(err) {
         console.log("added topics");
       }
     });
-    
+
     // // add some courses values
     // var add_course = 'insert into course(course_name, subject_id,  org_id, platform_id, topic1_id, topic2_id)'
     //     +' values("Programming in C++", 1, 1, 1, 1, 2),'
