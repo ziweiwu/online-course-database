@@ -49,8 +49,8 @@ con.connect(function (err) {
 
     // drop tables if they are made to initialize the database
     var disable_foreign_key_check = 'SET FOREIGN_KEY_CHECKS = 0;';
-    // var enable_foreign_key_check = 'SET FOREIGN_KEY_CHECKS = 1;';
-    // var drop_tables = 'DROP TABLE if exists course, topic, subject, platform, organization;';
+    var enable_foreign_key_check = 'SET FOREIGN_KEY_CHECKS = 1;';
+    var drop_tables = 'DROP TABLE if exists course, topic, subject, platform, organization;';
     con.query(disable_foreign_key_check, function (err, result) {
       if (err) {
         console.log(err);
@@ -58,20 +58,20 @@ con.connect(function (err) {
         console.log("Set foreign keys check off");
       }
     });
-    // con.query(drop_tables, function (err, result) {
-    //   if (err) {
-    //     console.log(err);
-    //   } else {
-    //     console.log("Tables dropped");
-    //   }
-    // });
-    // con.query(enable_foreign_key_check, function (err, result) {
-    //   if (err) {
-    //     console.log(err);
-    //   } else {
-    //     console.log("set foreign key check on");
-    //   }
-    // });
+    con.query(drop_tables, function (err, result) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log("Tables dropped");
+      }
+    });
+    con.query(enable_foreign_key_check, function (err, result) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log("set foreign key check on");
+      }
+    });
 
     // create organization tables
     var create_org_table = 'CREATE TABLE if not exists organization('
@@ -205,19 +205,19 @@ con.connect(function (err) {
     });
 
     // // add some courses values
-    // var add_course = 'insert into course(course_name, subject_id,  org_id, platform_id, topic1_id, topic2_id)'
-    //     +' values("Programming in C++", 1, 1, 1, 1, 2),'
-    //     + '("Cell Biology", 2, 2, 2, 3, 4),'
-    //     + '("Quantum Mechanics", 4, 4, 1, 7, null),'
-    //     + '("Real Analysis", 3, 2, 3, 5, null),'
-    //     + '("Data Structure", 1, 3, 2, 2, null);';
-    // con.query(add_course, function(err, result) {
-    //   if (err) {
-    //     console.log(err);
-    //   } else {
-    //     console.log("added courses");
-    //   }
-    // });
+    var add_course = 'insert into course(course_name, org_id, platform_id, subject_id, topic1_id, topic2_id)'
+      + ' values("Programming in C++", 1, 1, 1, 1, 11),'
+      + '("Cell Biology", 11, 11, 11, 21, 31),'
+      + '("Quantum Mechanics", 41, 41, 31, 61, null),'
+      + '("Real Analysis", 31, 21, 31, 21, 41),'
+      + '("Data Structure", 1, 31, 1, 1, 11);';
+    con.query(add_course, function (err, result) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log("added courses");
+      }
+    });
 
     //end of connection function
   }
