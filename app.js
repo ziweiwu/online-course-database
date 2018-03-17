@@ -49,8 +49,8 @@ con.connect(function (err) {
 
     // drop tables if they are made to initialize the database
     var disable_foreign_key_check = 'SET FOREIGN_KEY_CHECKS = 0;';
-    // var enable_foreign_key_check = 'SET FOREIGN_KEY_CHECKS = 1;';
-    // var drop_tables = 'DROP TABLE if exists course, topic, subject, platform, organization;';
+    var enable_foreign_key_check = 'SET FOREIGN_KEY_CHECKS = 1;';
+    var drop_tables = 'DROP TABLE if exists course, topic, subject, platform, organization;';
     con.query(disable_foreign_key_check, function (err, result) {
       if (err) {
         console.log(err);
@@ -58,20 +58,20 @@ con.connect(function (err) {
         console.log("Set foreign keys check off");
       }
     });
-    // con.query(drop_tables, function (err, result) {
-    //   if (err) {
-    //     console.log(err);
-    //   } else {
-    //     console.log("Tables dropped");
-    //   }
-    // });
-    // con.query(enable_foreign_key_check, function (err, result) {
-    //   if (err) {
-    //     console.log(err);
-    //   } else {
-    //     console.log("set foreign key check on");
-    //   }
-    // });
+    con.query(drop_tables, function (err, result) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log("Tables dropped");
+      }
+    });
+    con.query(enable_foreign_key_check, function (err, result) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log("set foreign key check on");
+      }
+    });
 
     // create organization tables
     var create_org_table = 'CREATE TABLE if not exists organization('
