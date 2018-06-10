@@ -8,7 +8,7 @@ Technologies
 Done
 
 - Continuous Deployment setup using Heroku. The app will be deployed to heroku
-every git push (https://online-course-database.herokuapp.com/)
+every git push (https://online-course-app-2.herokuapp.com/)
 
 ToDo
 
