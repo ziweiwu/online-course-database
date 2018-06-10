@@ -1,27 +1,27 @@
-var express = require('express');
-var path = require('path');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var dotenv = require('dotenv');
-var mysql = require('mysql2');
-var parseDBURL = require('parse-database-url');
-var compression = require('compression');
-var index = require('./routes/index');
-var add = require('./routes/add');
-var course = require('./routes/course');
-var org = require('./routes/org');
-var platform = require('./routes/platform');
-var subject = require('./routes/subject');
-var topic = require('./routes/topic');
-var update = require('./routes/update');
+const express = require('express');
+const path = require('path');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const dotenv = require('dotenv');
+const mysql = require('mysql2');
+const parseDBURL = require('parse-database-url');
+const compression = require('compression');
+const index = require('./routes/index');
+const add = require('./routes/add');
+const course = require('./routes/course');
+const org = require('./routes/org');
+const platform = require('./routes/platform');
+const subject = require('./routes/subject');
+const topic = require('./routes/topic');
+const update = require('./routes/update');
 
-//load process.env variables
+// load process.env variables
 dotenv.load();
-var app = express();
+const app = express();
 app.use(compression());
 
-//set up database
+// set up database
 // if deploy use clearDB database, else use local mySQL
 // var DB_URL = process.env.CLEARDB_DATABASE_URL || ' ';
 // var DB_config = parseDBURL(DB_URL);
@@ -204,22 +204,22 @@ app.use(compression());
 //       }
 //     });
 
-    // // add some courses values
-    // var add_course = 'insert into course(course_name, org_id, platform_id, subject_id, topic1_id, topic2_id)'
-    //   + ' values("Programming in C++", 1, 1, 1, 1, 11),'
-    //   + '("Cell Biology", 11, 11, 11, 21, 31),'
-    //   + '("Quantum Mechanics", 41, 41, 31, 61, null),'
-    //   + '("Real Analysis", 31, 21, 31, 21, 41),'
-    //   + '("Data Structure", 1, 31, 1, 1, 11);';
-    // con.query(add_course, function (err, result) {
-    //   if (err) {
-    //     console.log(err);
-    //   } else {
-    //     console.log("added courses");
-    //   }
-    // });
+// // add some courses values
+// var add_course = 'insert into course(course_name, org_id, platform_id, subject_id, topic1_id, topic2_id)'
+//   + ' values("Programming in C++", 1, 1, 1, 1, 11),'
+//   + '("Cell Biology", 11, 11, 11, 21, 31),'
+//   + '("Quantum Mechanics", 41, 41, 31, 61, null),'
+//   + '("Real Analysis", 31, 21, 31, 21, 41),'
+//   + '("Data Structure", 1, 31, 1, 1, 11);';
+// con.query(add_course, function (err, result) {
+//   if (err) {
+//     console.log(err);
+//   } else {
+//     console.log("added courses");
+//   }
+// });
 
-    //end of connection function
+// end of connection function
 //   }
 // });
 
@@ -229,10 +229,10 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-//app.use(logger('dev'));
+// app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+// app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -246,14 +246,14 @@ app.use('/', topic);
 app.use('/', update);
 
 // catch 404 and forward to error handler
-app.use(function (req, res, next) {
-  var err = new Error('Not Found');
+app.use((req, res, next) => {
+  const err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 
-//error handler
-app.use(function (err, req, res, next) {
+// error handler
+app.use((err, req, res, next) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -264,12 +264,12 @@ app.use(function (err, req, res, next) {
 });
 
 
-/****************************************************
+/** **************************************************
  Port listener
- ****************************************************/
-var port = process.env.PORT || 5000;
-app.listen(port, function () {
-  console.log("server running at port " + port);
+ *************************************************** */
+const port = process.env.PORT || 5000;
+app.listen(port, () => {
+  console.log(`server running at port ${port}`);
 });
 
 module.exports = app;

@@ -1,40 +1,41 @@
-var express = require('express');
-var mysql = require('mysql2');
-var parseDBURL = require('parse-database-url');
-var router = express.Router();
+const express = require('express');
+const mysql = require('mysql2');
+const parseDBURL = require('parse-database-url');
 
-router.get('/subject', function(req, res, next) {
-  var DB_URL = process.env.CLEARDB_DATABASE_URL || ' ';
-  var DB_config = parseDBURL(DB_URL) ;
+const router = express.Router();
+
+router.get('/subject', (req, res, next) => {
+  const DB_URL = process.env.CLEARDB_DATABASE_URL || ' ';
+  const DB_config = parseDBURL(DB_URL);
   console.log(DB_config);
-  var localDBPass = process.env.mysqlPASS || 'password';
-// connect to mysql
-  var host =  DB_config.host || 'localhost';
-  var user =  DB_config.user || 'root';
-  var password = DB_config.password || localDBPass;
-  var database = DB_config.database || 'online-course-app';
-  var con = mysql.createConnection({
+  const localDBPass = process.env.mysqlPASS || 'password';
+  // connect to mysql
+  const host = DB_config.host || 'localhost';
+  const user = DB_config.user || 'root';
+  const password = DB_config.password || localDBPass;
+  const database = DB_config.database || 'online-course-app';
+  const con = mysql.createConnection({
     reconnect: 'true',
     driver: 'mysql',
-    host:  host,
-    user: user,
-    password:  password,
-    database:  database
+    host,
+    user,
+    password,
+    database,
   });
 
-  con.connect(function(err) {
+  con.connect((err) => {
     if (err) {
       console.log(err);
     } else {
       console.log('mysql Connected!');
 
-      var subjects = 'select * from subject;';
-      con.query(subjects, function(err, result) {
+      const subjects = 'select * from subject;';
+      con.query(subjects, (err, result) => {
         if (err) {
           console.log(err);
         } else {
           console.log(result);
-          res.render('subject', {subjects: result, title: 'View Subjects'});
+          res.render('subject', { subjects: result, title: 'View Subjects' });
         }
       });
     }
@@ -42,37 +43,37 @@ router.get('/subject', function(req, res, next) {
 });
 
 //  Add new subject
-router.post('/add_sub', function(req, res, next) {
-  var DB_URL = process.env.CLEARDB_DATABASE_URL || ' ';
-  var DB_config = parseDBURL(DB_URL) ;
+router.post('/add_sub', (req, res, next) => {
+  const DB_URL = process.env.CLEARDB_DATABASE_URL || ' ';
+  const DB_config = parseDBURL(DB_URL);
   console.log(DB_config);
-  var localDBPass = process.env.mysqlPASS || 'password';
-// connect to mysql
-  var host =  DB_config.host || 'localhost';
-  var user =  DB_config.user || 'root';
-  var password = DB_config.password || localDBPass;
-  var database = DB_config.database || 'online-course-app';
-  var con = mysql.createConnection({
+  const localDBPass = process.env.mysqlPASS || 'password';
+  // connect to mysql
+  const host = DB_config.host || 'localhost';
+  const user = DB_config.user || 'root';
+  const password = DB_config.password || localDBPass;
+  const database = DB_config.database || 'online-course-app';
+  const con = mysql.createConnection({
     reconnect: 'true',
     driver: 'mysql',
-    host:  host,
-    user: user,
-    password:  password,
-    database:  database
+    host,
+    user,
+    password,
+    database,
   });
 
-  con.connect(function(err) {
+  con.connect((err) => {
     if (err) {
       console.log(err);
     } else {
       console.log('mysql Connected!');
 
-      var new_sub = req.body.add_sub;
+      const new_sub = req.body.add_sub;
       console.log(new_sub);
 
-      var add_new_sub = 'insert into subject(subject_name) values("'+ new_sub+ '");';
+      const add_new_sub = `insert into subject(subject_name) values("${new_sub}");`;
       console.log(add_new_sub);
-      con.query(add_new_sub, function(err, result) {
+      con.query(add_new_sub, (err, result) => {
         if (err) {
           console.log(err);
         } else {

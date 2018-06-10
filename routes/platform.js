@@ -1,40 +1,41 @@
-var express = require('express');
-var mysql = require('mysql2');
-var parseDBURL = require('parse-database-url');
-var router = express.Router();
+const express = require('express');
+const mysql = require('mysql2');
+const parseDBURL = require('parse-database-url');
 
-router.get('/platform', function(req, res, next) {
-  var DB_URL = process.env.CLEARDB_DATABASE_URL || ' ';
-  var DB_config = parseDBURL(DB_URL) ;
+const router = express.Router();
+
+router.get('/platform', (req, res, next) => {
+  const DB_URL = process.env.CLEARDB_DATABASE_URL || ' ';
+  const DB_config = parseDBURL(DB_URL);
   console.log(DB_config);
-  var localDBPass = process.env.mysqlPASS || 'password';
-// connect to mysql
-  var host =  DB_config.host || 'localhost';
-  var user =  DB_config.user || 'root';
-  var password = DB_config.password || localDBPass;
-  var database = DB_config.database || 'online-course-app';
-  var con = mysql.createConnection({
+  const localDBPass = process.env.mysqlPASS || 'password';
+  // connect to mysql
+  const host = DB_config.host || 'localhost';
+  const user = DB_config.user || 'root';
+  const password = DB_config.password || localDBPass;
+  const database = DB_config.database || 'online-course-app';
+  const con = mysql.createConnection({
     reconnect: 'true',
     driver: 'mysql',
-    host:  host,
-    user: user,
-    password:  password,
-    database:  database
+    host,
+    user,
+    password,
+    database,
   });
 
-  con.connect(function(err) {
+  con.connect((err) => {
     if (err) {
       console.log(err);
     } else {
       console.log('mysql Connected!');
 
-      var platforms = 'select * from platform;';
-      con.query(platforms, function(err, result) {
+      const platforms = 'select * from platform;';
+      con.query(platforms, (err, result) => {
         if (err) {
           console.log(err);
         } else {
           console.log(result);
-          res.render('platform', {platforms: result, title: 'View Platforms'});
+          res.render('platform', { platforms: result, title: 'View Platforms' });
         }
       });
     }
@@ -42,37 +43,37 @@ router.get('/platform', function(req, res, next) {
 });
 
 //  Add new platform
-router.post('/add_plat', function(req, res, next) {
-  var DB_URL = process.env.CLEARDB_DATABASE_URL || ' ';
-  var DB_config = parseDBURL(DB_URL) ;
+router.post('/add_plat', (req, res, next) => {
+  const DB_URL = process.env.CLEARDB_DATABASE_URL || ' ';
+  const DB_config = parseDBURL(DB_URL);
   console.log(DB_config);
-  var localDBPass = process.env.mysqlPASS || 'password';
-// connect to mysql
-  var host =  DB_config.host || 'localhost';
-  var user =  DB_config.user || 'root';
-  var password = DB_config.password || localDBPass;
-  var database = DB_config.database || 'online-course-app';
-  var con = mysql.createConnection({
+  const localDBPass = process.env.mysqlPASS || 'password';
+  // connect to mysql
+  const host = DB_config.host || 'localhost';
+  const user = DB_config.user || 'root';
+  const password = DB_config.password || localDBPass;
+  const database = DB_config.database || 'online-course-app';
+  const con = mysql.createConnection({
     reconnect: 'true',
     driver: 'mysql',
-    host:  host,
-    user: user,
-    password:  password,
-    database:  database
+    host,
+    user,
+    password,
+    database,
   });
 
-  con.connect(function(err) {
+  con.connect((err) => {
     if (err) {
       console.log(err);
     } else {
       console.log('mysql Connected!');
 
-      var new_plat = req.body.add_plat;
+      const new_plat = req.body.add_plat;
       console.log(new_plat);
 
-      var add_new_platform = 'insert into platform(platform_name) values("'+ new_plat + '");';
+      const add_new_platform = `insert into platform(platform_name) values("${new_plat}");`;
       console.log(add_new_platform);
-      con.query(add_new_platform, function(err, result) {
+      con.query(add_new_platform, (err, result) => {
         if (err) {
           console.log(err);
         } else {
